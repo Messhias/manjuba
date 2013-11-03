@@ -15,22 +15,26 @@ class Admin extends CI_Controller
 
 	public function login()
 	{
-		$this->load->model('admin/Login');
-		if ($_REQUEST['password'] && $_REQUEST['user']) {
-			$usuario = $_REQUEST['user'];
-			$pass = $_REQUEST['pass'];
+		$usuario = "";
+
+		$senha = "";
+
+		$usuario = $_REQUEST['user'];
+
+		$senha = $_REQUEST['password'];
+
+
+		$this->load->model('admin/Login','la');
+
+		if ($this->la->Autentifica($usuario,$senha)) 
+		{
+			echo "autenticou";
 			
-			if ($this->Login->Autentifica($usuario,$pass)) {
-				return true;
-				# code...
-			}
-			else
-			{
-				return false;
-			}
 		}
 		else
+		{
 			return false;
+		}
 	}
 }
 

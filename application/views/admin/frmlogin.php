@@ -4,8 +4,7 @@
 
 <div class="container-fluid-full">
 
-
-<ul class="noty_cont noty_layout_bottomRight" id="logando"></ul>
+		<div class="row-fluid">
 
 <div class="alert alert-success" id="avisoHeader">
 	<button type="button" class="close" data-dismiss="alert">×</button>
@@ -13,7 +12,11 @@
 	e <strong>senha</strong>.
 </div>
 
-		<div class="row-fluid">
+<div class="alert alert-info" id='autentica' style="display:none;">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							<strong>Autenticando...</strong> Aguarde um momento por favor.
+						</div>
+
 					
 			<div class="row-fluid">
 				<div class="login-box">
@@ -22,8 +25,7 @@
 
 						<?php
 
-							$atributos = array('id'=>'loginform',
-								'onclick'=>'close();');
+							$atributos = array('id'=>'loginform');
 
 							$usuario = array(
 								'class'=>'input-large span12',
@@ -87,8 +89,20 @@
 					</p>	
 				</div>
 			</div><!--/row-->
+
+
+
+
+	<div class="alert alert-error" style="display:none;" id="erroLogin">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							<strong>ERRO!</strong> Ocorreu um erro ao autentificar seus dados.
+							<strong>Verifique novamente</strong> o <strong>usuário</strong> e <strong>senha</strong>,
+							caso o erro persista procure o <strong>administrador</strong> do sistema ou vá ao link
+							<strong>"esqueceu minha senha?"</strong> para solicitar outra de acesso.
+						</div>
 			
 				</div><!--/fluid-row-->
+
 				
 	</div><!--/.fluid-container-->
 

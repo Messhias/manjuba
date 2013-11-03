@@ -12,6 +12,9 @@ Igual o onload() que coloca-se na tag body do html
 $(document).ready(function(){
 
 
+  $("#loginform").submit(function(event){
+    event.preventDefault();
+  });
  
   //abaixo usamos o seletor da jQuery para acessar o botão, e em seguida atribuir à ele um evento de click
   $("#btn_login").click(function(){ 
@@ -20,6 +23,8 @@ $(document).ready(function(){
     /** Eu fazia isso aqui um pouco diferente, passando direto o valor do campo... Mas, com uma dica do
     William Moraes, adaptei dessa forma, que no final das contas, fica melhor, por estar trabalhando com 
     ponteiros no método, e não com o ID único dos input's  */
+
+
  
   });
  
@@ -29,10 +34,6 @@ $(document).ready(function(){
 e enviar para a camada Controller (que está no Servidor) os dados informados pelo usuário para serem autenticados */
 function validaLogin(login, senha){
 
-  $("#loginform").submit(function(event){
-    event.preventDefault();
-  });
- 
   if(login.val() == ""){
     alert("Informe o login!"); //Exibe um alerta 
     login.focus(); //Adiciona foco ao campo login usando um ponteiro
@@ -57,19 +58,25 @@ function validaLogin(login, senha){
 
       var $form = $(this),
       usuario = $("input[name='txt_usuario']").val(),
-      senha = $("input[name='txt_senha']").val();
+      pass = $("input[name='txt_senha']").val();
 
       var url = $form.attr("action");
 
-      var posting = $.post(url, {user: usuario, password: senha},
+      var posting = $.post(url, {user: usuario, password: pass},
         function(data)
         {
-          alert(data);
-        }
-      });
-      
-    });
- 
+          if(data == "autenticou")
+          {
+            $("#autentica").show("slow");
+          }
+          else
+          {
+
+            login.focus();
+            $("#erroLogin").show("slow");
+          }
+        });      
+    }); 
   }
 } //validaLogin()
 </script>
